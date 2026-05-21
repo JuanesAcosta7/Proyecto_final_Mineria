@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -16,7 +17,21 @@ def etapa2():
 
 @app.route('/etapa3')
 def etapa3():
-    return render_template('etapa3.html')
+
+    df = pd.read_csv(
+        'data/reglas.csv',
+        sep=';'
+    )
+
+    tabla = df.to_html(
+        classes='table',
+        index=False
+    )
+
+    return render_template(
+        'etapa3.html',
+        tabla_reglas=tabla
+    )
 
 @app.route('/etapa4')
 def etapa4():
