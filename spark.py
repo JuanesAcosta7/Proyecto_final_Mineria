@@ -1,22 +1,49 @@
 import findspark
 findspark.init()
 
+import os
+import sys
+import time
+
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
+
 from pyspark.ml.feature import VectorAssembler
 from pyspark.ml.clustering import KMeans
 from pyspark.ml.regression import LinearRegression
 from pyspark.ml.evaluation import RegressionEvaluator
-import time
-import os
+
+os.environ['PYSPARK_PYTHON'] = sys.executable
+os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
 
 spark = SparkSession.builder \
-    .appName("CapacidadHospitalariaSpark") \
+    .appName("CapacidadHospitalariaCluster") \
+    .master("spark://192.168.80.17:7077") \
+    .config("spark.driver.host", "192.168.80.17") \
+    .config("spark.driver.bindAddress", "0.0.0.0") \
     .config(
         "spark.jars",
         "jdbc/mssql-jdbc-13.4.0.jre11.jar"
     ) \
+    .config(
+        "spark.executor.memory",
+        "2g"
+    ) \
+    .config(
+        "spark.driver.memory",
+        "2g"
+    ) \
+    .config(
+        "spark.executor.cores",
+        "2"
+    ) \
+    .config(
+        "spark.cores.max",
+        "4"
+    ) \
     .getOrCreate()
+
+spark.sparkContext.setLogLevel("ERROR")
 
 url = "jdbc:sqlserver://localhost:1433;databaseName=CAPACIDADHOSPITALARIA;integratedSecurity=true;trustServerCertificate=true"
 
@@ -105,6 +132,8 @@ df = df.select(
 df = df.dropna()
 
 df = df.filter(col("Cantidad") > 0)
+
+df = df.repartition(4)
 
 print("\nDATAFRAME MAESTRO")
 df.show(10)
@@ -329,4 +358,16 @@ predicciones.select(
     index=False
 )
 
+print("\nINFORMACION DEL CLUSTER")
+
+print("\nMASTER")
+print(spark.sparkContext.master)
+
+print("\nPARTICIONES")
+print(df.rdd.getNumPartitions())
+
+print("\nPROCESAMIENTO DISTRIBUIDO ACTIVO")
+
 print("\nPROCESO COMPLETADO")
+
+spark.stop()
