@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Etapa 4</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/etapa4.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+
+        <div class="container">
+
+            <a class="navbar-brand logo-text"
+               href="/">
+                Capacidad Hospitalaria
+            </a>
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menu">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse"
+                 id="menu">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link custom-link"
+                           href="/">
+                            Inicio
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link custom-link"
+                           href="/etapa1">
+                            Etapa 1
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link custom-link"
+                           href="/etapa2">
+                            Etapa 2
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link custom-link"
+                           href="/etapa3">
+                            Etapa 3
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active-link"
+                           href="/etapa4">
+                            Etapa 4
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <section class="stage4-main-section">
+
+        <div class="container">
+
+            <div class="top-layout">
+
+                <div class="left-content">
+
+                    <span class="stage-tag">
+                        ETAPA 4
+                    </span>
+
+                    <h1 class="main-title">
+
+                        Conocimiento
+                        profundo
+
+                    </h1>
+
+                    <p class="main-description">
+
+                        En esta etapa se implementaron
+                        procesos avanzados utilizando
+                        Apache Spark y Machine Learning
+                        para descubrir patrones ocultos
+                        dentro del sistema hospitalario
+                        colombiano.
+
+                        <br><br>
+
+                        Mediante modelos predictivos,
+                        análisis de clustering y detección
+                        de anomalías, fue posible identificar
+                        diferencias estructurales entre
+                        departamentos, tendencias complejas
+                        y comportamientos hospitalarios
+                        atípicos.
+
+                    </p>
+
+                </div>
+
+                <div class="right-content">
+
+                    <div class="model-card">
+
+                        <h3>
+                            Procesamiento Distribuido
+                        </h3>
+
+                        <img src="{{ url_for('static', filename='img/Spark.png') }}"
+                             alt="Spark">
+
+                        <p>
+
+                            Apache Spark permitió procesar
+                            millones de registros hospitalarios
+                            y aplicar algoritmos analíticos
+                            avanzados sobre grandes volúmenes
+                            de datos.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="dashboard-container">
+
+                <h2>
+                    Resultados Spark
+                </h2>
+
+                <div class="table-section">
+
+                    <h3>
+                        Capacidad por región
+                    </h3>
+
+                    {{ tabla_region|safe }}
+
+                </div>
+
+                <div class="table-section">
+
+                    <h3>
+                        Capacidad por departamento
+                    </h3>
+
+                    {{ tabla_departamento|safe }}
+
+                </div>
+
+                <div class="table-section">
+
+                    <h3>
+                        Clustering hospitalario
+                    </h3>
+
+                    {{ tabla_cluster|safe }}
+
+                </div>
+
+                <div class="table-section">
+
+                    <h3>
+                        Detección de anomalías
+                    </h3>
+
+                    {{ tabla_anomalias|safe }}
+
+                </div>
+
+            </div>
+
+            <div class="graphs-container">
+
+                <h2>
+                    Visualizaciones
+                </h2>
+
+                <div class="graphs-grid">
+
+                    <div class="graph-card">
+
+                        <img src="{{ url_for('static', filename='graficas/capacidad_region.png') }}"
+                             alt="Capacidad Region">
+
+                    </div>
+
+                    <div class="graph-card">
+
+                        <img src="{{ url_for('static', filename='graficas/top_departamentos.png') }}"
+                             alt="Top Departamentos">
+
+                    </div>
+
+                    <div class="graph-card">
+
+                        <img src="{{ url_for('static', filename='graficas/clustering.png') }}"
+                             alt="Clustering">
+
+                    </div>
+
+                    <div class="graph-card">
+
+                        <img src="{{ url_for('static', filename='graficas/anomalias.png') }}"
+                             alt="Anomalias">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="conclusions-container">
+
+                <h2>
+                    Conclusiones
+                </h2>
+
+                 <p>
+
+                    El análisis profundo realizado mediante técnicas de Big Data,
+                    clustering y detección de anomalías permitió identificar
+                    comportamientos ocultos dentro del sistema hospitalario colombiano.
+                    <br><br>
+
+                    Las visualizaciones regionales evidenciaron que la infraestructura
+                    hospitalaria colombiana se encuentra altamente centralizada,
+                    especialmente en la región Andina, la cual concentra la mayor parte
+                    de la capacidad médica nacional. En contraste, regiones como la
+                    Amazonía y la Orinoquía presentan niveles considerablemente menores
+                    de infraestructura hospitalaria y complejidad clínica.
+
+                    <br><br>
+
+                    El hallazgo más importante del análisis fue detectado mediante el
+                    modelo de anomalías, donde Bogotá presentó una desviación
+                    estructural extremadamente superior frente al resto de departamentos.
+                    Esto demuestra que Bogotá no solamente posee mayor capacidad
+                    hospitalaria, sino una combinación excepcionalmente alta de
+                    infraestructura, especialización médica y servicios clínicos
+                    avanzados.
+
+                    <br><br>
+
+                    Incluso departamentos como Antioquia y Valle del Cauca, que aparecen
+                    como los siguientes territorios con mayor desarrollo hospitalario,
+                    permanecen significativamente alejados del comportamiento estructural
+                    detectado en Bogotá. Esto permitió identificar una jerarquización
+                    hospitalaria nacional compuesta por un núcleo médico dominante y
+                    múltiples regiones dependientes de este.
+
+                    <br><br>
+
+                    La detección de anomalías también permitió identificar departamentos
+                    periféricos como Vaupés, Guainía, Vichada y Guaviare como
+                    comportamientos atípicos dentro del sistema nacional. Sin embargo,
+                    estas anomalías aparecen debido a niveles extremadamente reducidos
+                    de infraestructura y complejidad hospitalaria, evidenciando una
+                    fuerte polarización médica dentro del país.
+
+                    <br><br>
+
+                    Las gráficas de clustering mostraron además una relación lineal muy
+                    marcada entre capacidad hospitalaria y complejidad médica,
+                    indicando que los departamentos con mayor infraestructura son
+                    también los que concentran los servicios hospitalarios más
+                    especializados. Del mismo modo, las regiones con menor capacidad
+                    instalada tampoco presentan mecanismos compensatorios de alta
+                    complejidad médica.
+
+                    <br><br>
+
+                    Esto demuestra que el sistema hospitalario colombiano depende
+                    estructuralmente de unos pocos centros urbanos para la atención
+                    médica avanzada, generando concentración regional de servicios
+                    clínicos especializados y dependencia territorial hacia los
+                    departamentos con mayor desarrollo hospitalario.
+
+                    <br><br>
+
+                    Finalmente, el análisis profundo permitió concluir que el sistema
+                    hospitalario colombiano no opera bajo una distribución homogénea
+                    de recursos médicos, sino mediante una estructura centralizada de
+                    nodos hospitalarios dominantes, donde ciertos departamentos
+                    concentran gran parte de la infraestructura crítica y de los
+                    servicios médicos de alta complejidad del país.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

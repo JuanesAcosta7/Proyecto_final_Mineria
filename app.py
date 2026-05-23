@@ -35,7 +35,50 @@ def etapa3():
 
 @app.route('/etapa4')
 def etapa4():
-    return render_template('etapa4.html')
+
+    capacidad_region = pd.read_csv(
+        'resultados/capacidad_region.csv'
+    )
+
+    capacidad_departamento = pd.read_csv(
+        'resultados/capacidad_departamento.csv'
+    )
+
+    clustering = pd.read_csv(
+        'resultados/clusters.csv'
+    )
+
+    anomalias = pd.read_csv(
+        'resultados/anomalias.csv'
+    )
+
+    tabla_region = capacidad_region.to_html(
+        classes='table',
+        index=False
+    )
+
+    tabla_departamento = capacidad_departamento.to_html(
+        classes='table',
+        index=False
+    )
+
+    tabla_clustering = clustering.to_html(
+        classes='table',
+        index=False
+    )
+
+    tabla_anomalias = anomalias.to_html(
+        classes='table',
+        index=False
+    )
+
+    return render_template(
+        'etapa4.html',
+        tabla_region=tabla_region,
+        tabla_departamento=tabla_departamento,
+        tabla_cluster=tabla_clustering,
+        tabla_anomalias=tabla_anomalias
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)
