@@ -80,5 +80,9 @@ def etapa4():
         tabla_anomalias=tabla_anomalias
     )
 
+@app.route('/comparativa')
+def comparativa():
+    return render_template('comparativa.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
